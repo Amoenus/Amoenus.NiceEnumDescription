@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+
+<package>
+  <metadata>
+    <id>Amoenus.NiceEnumDescription</id>
+    <version>$version$</version>
+    <title>Amoenus Nice Enum Description</title>
+    <authors>Romans Pokrovskis</authors>
+    <owners></owners>
+    <description>
+      Easily get enum description from EnumDescription Attribute.
+
+      For example to have an enum in drop-down list but show a nice description for each value to the user.
+    </description>
+    <releaseNotes>
+      Initial release.
+    </releaseNotes>
+    <summary>
+      Easily get enum description from EnumDescription Attribute.
+    </summary>
+    <language>en-US</language>
+    <projectUrl>https://github.com/Amoenus.NiceEnumDescription</projectUrl>
+    <iconUrl>https://github.com/Amoenus/PclTimer/blob/master/PclTimer.png?raw=true</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>http://unlicense.org/UNLICENSE</licenseUrl>
+    <copyright></copyright>
+    <dependencies>
+    </dependencies>
+    <references></references>
+    <tags></tags>
+  </metadata>
+  <files>
+    <file src="..\Amoenus.NiceEnumDescription\bin\Release\" target="lib" />
+  </files>
+</package>
