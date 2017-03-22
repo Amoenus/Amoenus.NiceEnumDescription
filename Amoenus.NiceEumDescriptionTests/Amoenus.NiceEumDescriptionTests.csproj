@@ -49,8 +49,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Amoenus.EnumDescription\Amoenus.NiceEnumDescription.csproj">
-      <Project>{9642672E-DA18-4692-AB66-FA7BC690A929}</Project>
+    <ProjectReference Include="..\Amoenus.NiceEnumDescription\Amoenus.NiceEnumDescription.csproj">
+      <Project>{9642672e-da18-4692-ab66-fa7bc690a929}</Project>
       <Name>Amoenus.NiceEnumDescription</Name>
     </ProjectReference>
   </ItemGroup>

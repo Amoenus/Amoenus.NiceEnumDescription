@@ -7,7 +7,7 @@ init:
 before_build:
 - cmd: nuget restore
 build:
-  project: Amoenus.EnumDescription
+  project: Amoenus.NiceEnumDescription
   publish_nuget: true
   publish_nuget_symbols: true
   include_nuget_references: true
