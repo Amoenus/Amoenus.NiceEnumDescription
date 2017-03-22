@@ -23,13 +23,19 @@ namespace Amoenus.NiceEnumDescription
             if (!enumeration.HasValue())
                 return ReturnValueForNotExist(enumeration, notExistOption);
 
+            if (GetDescriptionFromAttribute(fieldInfo)) return null;
+
+            return ReturnValueForNotExist(enumeration, notExistOption);
+        }
+
+        private static bool GetDescriptionFromAttribute(FieldInfo fieldInfo)
+        {
             var attribute =
                 (EnumDescriptionAttribute[]) fieldInfo.GetCustomAttributes(typeof(EnumDescriptionAttribute), false);
 
             if (attribute.Length > 0)
-                return attribute[0].Description;
-
-            return ReturnValueForNotExist(enumeration, notExistOption);
+                return true;
+            return false;
         }
 
         private static string ReturnValueForNotExist(Enum enumeration, NotExistOption notExistOption)

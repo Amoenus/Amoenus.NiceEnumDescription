@@ -7,21 +7,12 @@ namespace Amoenus.NiceEumDescriptionTests
     [TestFixture]
     public class NiceEnumTests
     {
-        enum TestEnum
-        {
-            [EnumDescription("Test One Description")]
-            TestOne,
-            [EnumDescription("Test Two Description")]
-            TestTwo,
-            TestThree
-        }
-
         [Test]
         public void TestMethod()
         {
-            var result1 = TestEnum.TestOne.GetEnumDescription();
-            var result2 = TestEnum.TestTwo.GetEnumDescription();
-            var result3 = TestEnum.TestThree.GetEnumDescription();
+            string result1 = TestEnum.TestOne.GetEnumDescription();
+            string result2 = TestEnum.TestTwo.GetEnumDescription();
+            string result3 = TestEnum.TestThree.GetEnumDescription();
 
             result1.ShouldBe("Test One Description");
             result2.ShouldBe("Test Two Description");
@@ -31,15 +22,34 @@ namespace Amoenus.NiceEumDescriptionTests
         [Test]
         public void TestMethod2()
         {
-            var result3 = TestEnum.TestThree.GetEnumDescription(NotExistOption.Null);
+            string result3 = TestEnum.TestThree.GetEnumDescription(NotExistOption.Null);
             result3.ShouldBeNull();
         }
 
         [Test]
         public void TestMethod3()
         {
-            var result3 = TestEnum.TestThree.GetEnumDescription(NotExistOption.EmptyString);
+            string result3 = TestEnum.TestThree.GetEnumDescription(NotExistOption.EmptyString);
             result3.ShouldBeEmpty();
+        }
+
+        [Test]
+        public void TestMethod4()
+        {
+            string result3 = TestEnum.TestThree.GetEnumDescription(NotExistOption.ToString);
+            result3.ShouldBe(nameof(TestEnum.TestThree));
+        }
+
+        [Test]
+        public void TestMethod5()
+        {
+            bool result1 = TestEnum.TestThree.HasValue();
+            bool result2 = TestEnum.TestThree.HasValue();
+            bool result3 = TestEnum.TestThree.HasValue();
+
+            result1.ShouldBeTrue();
+            result2.ShouldBeTrue();
+            result3.ShouldBeTrue();
         }
     }
 }
