@@ -15,7 +15,7 @@ build:
 before_package:
 - cmd: 
 after_build:
-- cmd: nuget pack Amoenus.NiceEnumDescription\Package.nuspec -Version %appveyor_build_version%
+- cmd: nuget pack Amoenus.EnumDescription\Package.nuspec -Version %appveyor_build_version%
 after_test:
 - cmd: 
 artifacts:
