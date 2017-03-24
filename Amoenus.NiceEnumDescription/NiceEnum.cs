@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Reflection;
 
 namespace Amoenus.NiceEnumDescription
@@ -23,19 +24,19 @@ namespace Amoenus.NiceEnumDescription
             if (!enumeration.HasValue())
                 return ReturnValueForNotExist(enumeration, notExistOption);
 
-            if (GetDescriptionFromAttribute(fieldInfo)) return null;
+            string attribute = GetDescriptionFromAttribute(fieldInfo);
 
-            return ReturnValueForNotExist(enumeration, notExistOption);
+            return string.IsNullOrWhiteSpace(attribute) ? ReturnValueForNotExist(enumeration, notExistOption) : attribute;
         }
 
-        private static bool GetDescriptionFromAttribute(FieldInfo fieldInfo)
+        private static string GetDescriptionFromAttribute(FieldInfo fieldInfo)
         {
             var attribute =
                 (EnumDescriptionAttribute[]) fieldInfo.GetCustomAttributes(typeof(EnumDescriptionAttribute), false);
 
-            if (attribute.Length > 0)
-                return true;
-            return false;
+            return attribute.Length > 0
+                ? attribute.First().Description
+                : null;
         }
 
         private static string ReturnValueForNotExist(Enum enumeration, NotExistOption notExistOption)
