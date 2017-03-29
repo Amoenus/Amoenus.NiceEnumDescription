@@ -4,6 +4,7 @@ namespace Amoenus.NiceEnumDescription
     {
         ToString,
         EmptyString,
-        Null
+        Null,
+        Throw
     }
 }

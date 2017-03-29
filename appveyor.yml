@@ -1,9 +1,9 @@
-version: 0.0.{build}
+version: 0.1.{build}
 image: Visual Studio 2017
 configuration: Release
 clone_folder: C:\Git\NiceEnumDescription
 init:
-- cmd: 
+- cmd:
 before_build:
 - cmd: nuget restore
 build:
@@ -13,11 +13,11 @@ build:
   include_nuget_references: true
   verbosity: minimal
 before_package:
-- cmd: 
+- cmd:
 after_build:
 - cmd: nuget pack Amoenus.NiceEnumDescription\Package.nuspec -Version %appveyor_build_version%
 after_test:
-- cmd: 
+- cmd:
 artifacts:
 - path: '**\Amoenus.NiceEnumDescription*.nupkg'
   name: packages
