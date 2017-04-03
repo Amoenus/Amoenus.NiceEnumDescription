@@ -31,6 +31,7 @@
     <tags></tags>
   </metadata>
   <files>
-    <file src="..\Amoenus.NiceEnumDescription\bin\Release\" target="lib" />
+    <file src="..\Amoenus.NiceEnumDescription\bin\Release\" target="lib\netstandard1.0" />
+    <file src="..\Amoenus.NiceEnumDescription\bin\Release\" target="lib\portable-net403+sl40+win+wp+Xbox40" />
   </files>
 </package>
