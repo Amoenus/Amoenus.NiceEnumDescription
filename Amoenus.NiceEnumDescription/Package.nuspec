@@ -13,11 +13,13 @@
       For example to have an enum in drop-down list but show a nice description for each value to the user.
     </description>
     <releaseNotes>
-      Added GetEnumDescriptionDictionary that will return a dictionary of every enum as a key, and description as value:
-      Suggested Use in WPF : https://gist.github.com/Amoenus/56a4c286d3f6898b1f34ccf6da6576be
+      Added documentation file for IntelliSense
     </releaseNotes>
     <summary>
       Easily get enum description from EnumDescription Attribute.
+
+      Added GetEnumDescriptionDictionary that will return a dictionary of every enum as a key, and description as value:
+      Suggested Use in WPF : https://gist.github.com/Amoenus/56a4c286d3f6898b1f34ccf6da6576be
     </summary>
     <language>en-US</language>
     <projectUrl>https://github.com/Amoenus.NiceEnumDescription</projectUrl>
@@ -31,6 +33,6 @@
     <tags></tags>
   </metadata>
   <files>
-    <file src="..\Amoenus.NiceEnumDescription\bin\Release\" target="lib" />
+    <file src="..\Amoenus.NiceEnumDescription\bin\Release\" target="lib\netstandard1.0" />
   </files>
 </package>
