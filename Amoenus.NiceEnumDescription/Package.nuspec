@@ -13,7 +13,7 @@
       For example to have an enum in drop-down list but show a nice description for each value to the user.
     </description>
     <releaseNotes>
-      Added documentation file for IntelliSense
+      Code refactoring release
     </releaseNotes>
     <summary>
       Easily get enum description from EnumDescription Attribute.

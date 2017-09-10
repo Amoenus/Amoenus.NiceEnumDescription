@@ -101,20 +101,26 @@ namespace Amoenus.NiceEnumDescription
         {
             Type enumType = typeof(TEnum);
 
-            if (enumType.GetTypeInfo().IsEnum)
+            CheckIsEnumStrict<TEnum>(enumType);
+
+            var dictionary = new Dictionary<TEnum, string>();
+
+            IEnumerable<TEnum> enumValues = GetEnumValues<TEnum>();
+
+            foreach (TEnum enumValue in enumValues)
             {
-                var dictionary = new Dictionary<TEnum, string>();
-
-                IEnumerable<TEnum> enumValues = GetEnumValues<TEnum>();
-
-                foreach (TEnum enumValue in enumValues)
-                {
-                    var pureEnumValue = enumValue as Enum;
-                    dictionary.Add(enumValue, pureEnumValue.GetEnumDescription(notExistOption));
-                }
-                return dictionary;
+                var pureEnumValue = enumValue as Enum;
+                dictionary.Add(enumValue, pureEnumValue.GetEnumDescription(notExistOption));
             }
-            throw new ArgumentException(nameof(TEnum), $"{nameof(TEnum)} is not an Enum");
+            return dictionary;
+        }
+
+        private static void CheckIsEnumStrict<TEnum>(Type enumType)
+        {
+            if (!enumType.GetTypeInfo().IsEnum)
+            {
+                throw new ArgumentException(nameof(TEnum), $"{nameof(TEnum)} is not an Enum");
+            }
         }
 
         /// <summary>
@@ -126,12 +132,11 @@ namespace Amoenus.NiceEnumDescription
         public static IEnumerable<TEnum> GetEnumValues<TEnum>()
         {
             Type enumType = typeof(TEnum);
-            if (enumType.GetTypeInfo().IsEnum)
-            {
-                IEnumerable<TEnum> enumValues = Enum.GetValues(enumType).Cast<TEnum>();
-                return enumValues;
-            }
-            throw new ArgumentException(nameof(TEnum), $"{nameof(TEnum)} is not an Enum");
+
+            CheckIsEnumStrict<TEnum>(enumType);
+
+            IEnumerable<TEnum> enumValues = Enum.GetValues(enumType).Cast<TEnum>();
+            return enumValues;
         }
 
         /// <summary>
