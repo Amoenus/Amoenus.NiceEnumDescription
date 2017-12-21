@@ -5,62 +5,86 @@ using System.Reflection;
 
 namespace Amoenus.NiceEnumDescription
 {
+    /// <summary>
+    ///     Container class for <see cref="NiceEnum" /> extension methods
+    /// </summary>
     public static class NiceEnum
     {
         /// <summary>
-        ///     Gets the enum description or null.
+        ///     Gets the <see langword="enum" /> description or null.
         /// </summary>
         /// <param name="enumeration">The enumeration.</param>
-        /// <returns></returns>
+        /// <returns>
+        /// </returns>
         public static string GetEnumDescriptionOrNull(this Enum enumeration)
         {
             return GetEnumDescription(enumeration, NotExistOption.Null);
         }
 
         /// <summary>
-        ///     Gets the enum description or empty string.
+        ///     Gets the <see langword="enum" /> description or empty string.
         /// </summary>
         /// <param name="enumeration">The enumeration.</param>
-        /// <returns></returns>
+        /// <returns>
+        /// </returns>
         public static string GetEnumDescriptionOrEmptyString(this Enum enumeration)
         {
             return GetEnumDescription(enumeration, NotExistOption.EmptyString);
         }
 
         /// <summary>
-        ///     Gets the enum description or string representation of an enum.
+        ///     Gets the <see langword="enum" /> description or string
+        ///     representation of an enum.
+        /// </summary>
+        /// <param name="enumeration">The enumeration.</param>
+        /// <returns>
+        /// </returns>
+        public static string GetEnumDescription(this Enum enumeration)
+        {
+            return GetEnumDescription(enumeration, NotExistOption.ToString);
+        }
+
+        /// <summary>
+        ///     <para>
+        ///         Gets the <see langword="enum" /> description or representation as
+        ///         specified by <see cref="NotExistOption" />
+        ///     </para>
+        ///     <para>of an enum.</para>
         /// </summary>
         /// <param name="enumeration">The enumeration.</param>
         /// <param name="notExistOption">The not exist option.</param>
-        /// <returns></returns>
-        public static string GetEnumDescription(this Enum enumeration,
-                                                NotExistOption notExistOption = NotExistOption.ToString)
+        /// <returns>
+        /// </returns>
+        public static string GetEnumDescription(this Enum enumeration, NotExistOption notExistOption)
         {
             FieldInfo fieldInfo = enumeration.GetType().GetRuntimeField(enumeration.ToString());
 
             if (!enumeration.HasValue())
+            {
                 return ReturnValueForNotExist(enumeration, notExistOption);
+            }
 
             string attribute = GetDescriptionFromAttribute(fieldInfo);
 
             return string.IsNullOrWhiteSpace(attribute)
-                       ? ReturnValueForNotExist(enumeration, notExistOption)
-                       : attribute;
+                ? ReturnValueForNotExist(enumeration, notExistOption)
+                : attribute;
         }
 
         /// <summary>
         ///     Gets the description from attribute.
         /// </summary>
         /// <param name="fieldInfo">The field information.</param>
-        /// <returns></returns>
+        /// <returns>
+        /// </returns>
         private static string GetDescriptionFromAttribute(FieldInfo fieldInfo)
         {
             var attribute =
                 (EnumDescriptionAttribute[]) fieldInfo.GetCustomAttributes(typeof(EnumDescriptionAttribute), false);
 
             return attribute.Length > 0
-                       ? attribute.First().Description
-                       : null;
+                ? attribute.First().Description
+                : null;
         }
 
         /// <summary>
@@ -68,8 +92,20 @@ namespace Amoenus.NiceEnumDescription
         /// </summary>
         /// <param name="enumeration">The enumeration.</param>
         /// <param name="notExistOption">The not exist option.</param>
-        /// <returns></returns>
-        /// <exception cref="System.ArgumentOutOfRangeException">notExistOption - null</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        ///     <para>
+        ///         <paramref name="notExistOption" />
+        ///     </para>
+        ///     <list type="bullet">
+        ///         <item>
+        ///             <description>
+        ///                 <see langword="null" />
+        ///             </description>
+        ///         </item>
+        ///     </list>
+        /// </exception>
+        /// <returns>
+        /// </returns>
         private static string ReturnValueForNotExist(Enum enumeration, NotExistOption notExistOption)
         {
             switch (notExistOption)
@@ -82,20 +118,23 @@ namespace Amoenus.NiceEnumDescription
                     return string.Empty;
                 case NotExistOption.Throw:
                     throw new ArgumentOutOfRangeException(nameof(enumeration), enumeration,
-                                                          ErrorMessages.NoDescriptionOrInvalidEnumMessage);
+                        ErrorMessages.NoDescriptionOrInvalidEnumMessage);
                 default:
                     throw new ArgumentOutOfRangeException(nameof(notExistOption), notExistOption,
-                                                          ErrorMessages.NotValidNotExistOptionMessage);
+                        ErrorMessages.NotValidNotExistOptionMessage);
             }
         }
 
         /// <summary>
-        ///     Gets the enum description dictionary.
+        ///     Gets the <see langword="enum" /> description dictionary.
         /// </summary>
         /// <typeparam name="TEnum">The type of the enum.</typeparam>
         /// <param name="notExistOption">The not exist option.</param>
-        /// <returns></returns>
-        /// <exception cref="System.ArgumentException">TEnum is not an Enum</exception>
+        /// <exception cref="ArgumentException">
+        ///     <typeparamref name="TEnum" /> is not an Enum
+        /// </exception>
+        /// <returns>
+        /// </returns>
         public static Dictionary<TEnum, string> GetEnumDescriptionDictionary<TEnum>(
             NotExistOption notExistOption = NotExistOption.ToString)
         {
@@ -112,6 +151,7 @@ namespace Amoenus.NiceEnumDescription
                 var pureEnumValue = enumValue as Enum;
                 dictionary.Add(enumValue, pureEnumValue.GetEnumDescription(notExistOption));
             }
+
             return dictionary;
         }
 
@@ -124,11 +164,23 @@ namespace Amoenus.NiceEnumDescription
         }
 
         /// <summary>
-        ///     Gets the enum values.
+        ///     Gets the <see langword="enum" /> values.
         /// </summary>
         /// <typeparam name="TEnum">The type of the enum.</typeparam>
-        /// <returns></returns>
-        /// <exception cref="System.ArgumentException">TEnum - TEnum</exception>
+        /// <exception cref="ArgumentException">
+        ///     <para>
+        ///         <typeparamref name="TEnum" />
+        ///     </para>
+        ///     <list type="bullet">
+        ///         <item>
+        ///             <description>
+        ///                 <typeparamref name="TEnum" />
+        ///             </description>
+        ///         </item>
+        ///     </list>
+        /// </exception>
+        /// <returns>
+        /// </returns>
         public static IEnumerable<TEnum> GetEnumValues<TEnum>()
         {
             Type enumType = typeof(TEnum);
@@ -144,7 +196,8 @@ namespace Amoenus.NiceEnumDescription
         /// </summary>
         /// <param name="enumeration">The enumeration.</param>
         /// <returns>
-        ///     <c>true</c> if the specified enumeration has value; otherwise, <c>false</c>.
+        ///     <c>true</c> if the specified <paramref name="enumeration" /> has
+        ///     value; otherwise, <c>false</c> .
         /// </returns>
         public static bool HasValue(this Enum enumeration)
         {
