@@ -4,4 +4,8 @@
     <TargetFramework>netstandard1.0</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\netstandard1.0\Amoenus.NiceEnumDescription.xml</DocumentationFile>
+  </PropertyGroup>
+
 </Project>
