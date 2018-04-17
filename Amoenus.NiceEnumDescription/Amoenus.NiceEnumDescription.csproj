@@ -18,6 +18,22 @@
       netcoreapp1.1;
 
     </TargetFrameworks>
+    <PackageId>Amoenus.NiceEnumDescription</PackageId>
+    <Authors>Romans Pokrovskis</Authors>
+    <Company />
+    <Product>Amoenus Nice Enum Description</Product>
+    <Description>Easily get enum description from EnumDescription Attribute.
+
+For example to have an enum in drop-down list but show a nice description for each value to the user.
+
+Added GetEnumDescriptionDictionary that will return a dictionary of every enum as a key, and description as value:
+Suggested Use in WPF : https://gist.github.com/Amoenus/56a4c286d3f6898b1f34ccf6da6576be</Description>
+    <PackageLicenseUrl>http://unlicense.org/UNLICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/Amoenus.NiceEnumDescription</PackageProjectUrl>
+    <PackageIconUrl>https://github.com/Amoenus/Amoenus.NiceEnumDescription/blob/master/cc0-logo.png?raw=true</PackageIconUrl>
+    <RepositoryUrl>https://github.com/Amoenus.NiceEnumDescription</RepositoryUrl>
+    <PackageReleaseNotes>Making package multi-targetted. Dropping support for PCL</PackageReleaseNotes>
+    <NeutralLanguage>en-GB</NeutralLanguage>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
