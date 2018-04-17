@@ -13,7 +13,7 @@
       For example to have an enum in drop-down list but show a nice description for each value to the user.
     </description>
     <releaseNotes>
-      Code refactoring release
+      Making package multi-targetted. Dropping support for PCL
     </releaseNotes>
     <summary>
       Easily get enum description from EnumDescription Attribute.
@@ -33,7 +33,19 @@
     <tags></tags>
   </metadata>
   <files>
-    <file src="..\Amoenus.NiceEnumDescription\bin\Release\" target="lib\netstandard1.0" />
-    <file src="..\Amoenus.NiceEnumDescription\bin\Release\" target="lib\portable-net403+sl40+win+wp+Xbox40" />
+    <file src="..\Amoenus.NiceEnumDescription\bin\Release\netstandard1.0" target="lib\netstandard1.0" />
+    <file src="..\Amoenus.NiceEnumDescription\bin\Release\netstandard1.1" target="lib\netstandard1.1" />
+    <file src="..\Amoenus.NiceEnumDescription\bin\Release\netstandard1.2" target="lib\netstandard1.2" />
+    <file src="..\Amoenus.NiceEnumDescription\bin\Release\netstandard1.3" target="lib\netstandard1.3" />
+    <file src="..\Amoenus.NiceEnumDescription\bin\Release\netstandard1.4" target="lib\netstandard1.4" />
+    <file src="..\Amoenus.NiceEnumDescription\bin\Release\netstandard1.5" target="lib\netstandard1.5" />
+    <file src="..\Amoenus.NiceEnumDescription\bin\Release\netstandard1.6" target="lib\netstandard1.6" />
+    <file src="..\Amoenus.NiceEnumDescription\bin\Release\netstandard2.0" target="lib\netstandard2.0" />
+    <file src="..\Amoenus.NiceEnumDescription\bin\Release\net45" target="lib\net45" />
+    <file src="..\Amoenus.NiceEnumDescription\bin\Release\net451" target="lib\net451" />
+    <file src="..\Amoenus.NiceEnumDescription\bin\Release\net452" target="lib\net452" />
+    <file src="..\Amoenus.NiceEnumDescription\bin\Release\net461" target="lib\net461" />
+    <file src="..\Amoenus.NiceEnumDescription\bin\Release\netcoreapp1.0" target="lib\netcoreapp1.0" />
+    <file src="..\Amoenus.NiceEnumDescription\bin\Release\netcoreapp1.1" target="lib\netcoreapp1.1" />
   </files>
 </package>
