@@ -16,7 +16,7 @@ namespace Amoenus.NiceEnumDescription
         /// <param name="enumeration">The enumeration.</param>
         /// <returns>
         /// </returns>
-        public static string GetEnumDescriptionOrNull(this Enum enumeration)
+        public static string? GetEnumDescriptionOrNull(this Enum enumeration)
         {
             return GetEnumDescription(enumeration, NotExistOption.Null);
         }
@@ -29,7 +29,7 @@ namespace Amoenus.NiceEnumDescription
         /// </returns>
         public static string GetEnumDescriptionOrEmptyString(this Enum enumeration)
         {
-            return GetEnumDescription(enumeration, NotExistOption.EmptyString);
+            return GetEnumDescription(enumeration, NotExistOption.EmptyString) ?? string.Empty;
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Amoenus.NiceEnumDescription
         /// </returns>
         public static string GetEnumDescription(this Enum enumeration)
         {
-            return GetEnumDescription(enumeration, NotExistOption.ToString);
+            return GetEnumDescription(enumeration, NotExistOption.ToString) ?? enumeration.ToString();
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace Amoenus.NiceEnumDescription
         /// <param name="notExistOption">The not exist option.</param>
         /// <returns>
         /// </returns>
-        public static string GetEnumDescription(this Enum enumeration, NotExistOption notExistOption)
+        public static string? GetEnumDescription(this Enum enumeration, NotExistOption notExistOption)
         {
             FieldInfo fieldInfo = enumeration.GetType().GetRuntimeField(enumeration.ToString());
 
@@ -64,7 +64,7 @@ namespace Amoenus.NiceEnumDescription
                 return ReturnValueForNotExist(enumeration, notExistOption);
             }
 
-            string attribute = GetDescriptionFromAttribute(fieldInfo);
+            string? attribute = GetDescriptionFromAttribute(fieldInfo);
 
             return string.IsNullOrWhiteSpace(attribute)
                 ? ReturnValueForNotExist(enumeration, notExistOption)
@@ -77,10 +77,10 @@ namespace Amoenus.NiceEnumDescription
         /// <param name="fieldInfo">The field information.</param>
         /// <returns>
         /// </returns>
-        private static string GetDescriptionFromAttribute(FieldInfo fieldInfo)
+        private static string? GetDescriptionFromAttribute(FieldInfo fieldInfo)
         {
             var attribute =
-                (EnumDescriptionAttribute[]) fieldInfo.GetCustomAttributes(typeof(EnumDescriptionAttribute), false);
+                (EnumDescriptionAttribute[])fieldInfo.GetCustomAttributes(typeof(EnumDescriptionAttribute), false);
 
             return attribute.Length > 0
                 ? attribute.First().Description
@@ -106,7 +106,7 @@ namespace Amoenus.NiceEnumDescription
         /// </exception>
         /// <returns>
         /// </returns>
-        private static string ReturnValueForNotExist(Enum enumeration, NotExistOption notExistOption)
+        private static string? ReturnValueForNotExist(Enum enumeration, NotExistOption notExistOption)
         {
             switch (notExistOption)
             {
@@ -130,62 +130,34 @@ namespace Amoenus.NiceEnumDescription
         /// </summary>
         /// <typeparam name="TEnum">The type of the enum.</typeparam>
         /// <param name="notExistOption">The not exist option.</param>
-        /// <exception cref="ArgumentException">
-        ///     <typeparamref name="TEnum" /> is not an Enum
-        /// </exception>
         /// <returns>
         /// </returns>
-        public static Dictionary<TEnum, string> GetEnumDescriptionDictionary<TEnum>(
-            NotExistOption notExistOption = NotExistOption.ToString)
+        public static Dictionary<TEnum, string?> GetEnumDescriptionDictionary<TEnum>(
+            NotExistOption notExistOption = NotExistOption.ToString) where TEnum : Enum
         {
             Type enumType = typeof(TEnum);
 
-            CheckIsEnumStrict<TEnum>(enumType);
-
-            var dictionary = new Dictionary<TEnum, string>();
+            var dictionary = new Dictionary<TEnum, string?>();
 
             IEnumerable<TEnum> enumValues = GetEnumValues<TEnum>();
 
             foreach (TEnum enumValue in enumValues)
             {
-                var pureEnumValue = enumValue as Enum;
-                dictionary.Add(enumValue, pureEnumValue.GetEnumDescription(notExistOption));
+                dictionary.Add(enumValue, enumValue.GetEnumDescription(notExistOption));
             }
 
             return dictionary;
-        }
-
-        private static void CheckIsEnumStrict<TEnum>(Type enumType)
-        {
-            if (!enumType.GetTypeInfo().IsEnum)
-            {
-                throw new ArgumentException(nameof(TEnum), $"{nameof(TEnum)} is not an Enum");
-            }
         }
 
         /// <summary>
         ///     Gets the <see langword="enum" /> values.
         /// </summary>
         /// <typeparam name="TEnum">The type of the enum.</typeparam>
-        /// <exception cref="ArgumentException">
-        ///     <para>
-        ///         <typeparamref name="TEnum" />
-        ///     </para>
-        ///     <list type="bullet">
-        ///         <item>
-        ///             <description>
-        ///                 <typeparamref name="TEnum" />
-        ///             </description>
-        ///         </item>
-        ///     </list>
-        /// </exception>
         /// <returns>
         /// </returns>
-        public static IEnumerable<TEnum> GetEnumValues<TEnum>()
+        public static IEnumerable<TEnum> GetEnumValues<TEnum>() where TEnum : Enum
         {
             Type enumType = typeof(TEnum);
-
-            CheckIsEnumStrict<TEnum>(enumType);
 
             IEnumerable<TEnum> enumValues = Enum.GetValues(enumType).Cast<TEnum>();
             return enumValues;
