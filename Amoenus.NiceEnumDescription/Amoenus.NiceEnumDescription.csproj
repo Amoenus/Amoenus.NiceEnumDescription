@@ -14,8 +14,13 @@
       net451;
       net452;
       net461;
+      net462;
+      net47;
+      net471;
+      net472;
       netcoreapp1.0;
       netcoreapp1.1;
+      netcoreapp2.0;
 
     </TargetFrameworks>
     <PackageId>Amoenus.NiceEnumDescription</PackageId>
@@ -34,6 +39,7 @@ Suggested Use in WPF : https://gist.github.com/Amoenus/56a4c286d3f6898b1f34ccf6d
     <RepositoryUrl>https://github.com/Amoenus.NiceEnumDescription</RepositoryUrl>
     <PackageReleaseNotes>Making package multi-targetted. Dropping support for PCL</PackageReleaseNotes>
     <NeutralLanguage>en-GB</NeutralLanguage>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
