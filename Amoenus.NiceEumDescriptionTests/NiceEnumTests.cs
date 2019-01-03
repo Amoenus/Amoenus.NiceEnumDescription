@@ -26,9 +26,9 @@ namespace Amoenus.NiceEumDescriptionTests
         [Test]
         public void GetEnumDescription_GetsExpectedDescriptionOrNull()
         {
-            const NotExistOption NotExistOption = NotExistOption.Null;
-            string result3 = TestEnum.TestThree.GetEnumDescription(NotExistOption);
-            string result4 = ((TestEnum)4).GetEnumDescription(NotExistOption);
+            const NotExistOption notExistOption = NotExistOption.Null;
+            string result3 = TestEnum.TestThree.GetEnumDescription(notExistOption);
+            string result4 = ((TestEnum)4).GetEnumDescription(notExistOption);
 
             result3.ShouldBeNull();
             result4.ShouldBeNull();
@@ -37,10 +37,10 @@ namespace Amoenus.NiceEumDescriptionTests
         [Test]
         public void GetEnumDescription_GetsExpectedDescriptionOrEmptyString()
         {
-            const NotExistOption NotExistOption = NotExistOption.EmptyString;
+            const NotExistOption notExistOption = NotExistOption.EmptyString;
 
-            string result3 = TestEnum.TestThree.GetEnumDescription(NotExistOption);
-            string result4 = ((TestEnum)4).GetEnumDescription(NotExistOption);
+            string result3 = TestEnum.TestThree.GetEnumDescription(notExistOption);
+            string result4 = ((TestEnum)4).GetEnumDescription(notExistOption);
 
             result3.ShouldBeEmpty();
             result4.ShouldBeEmpty();
@@ -49,10 +49,10 @@ namespace Amoenus.NiceEumDescriptionTests
         [Test]
         public void GetEnumDescription_GetsExpectedDescriptionOrToString()
         {
-            const NotExistOption NotExistOption = NotExistOption.ToString;
+            const NotExistOption notExistOption = NotExistOption.ToString;
 
-            string result3 = TestEnum.TestThree.GetEnumDescription(NotExistOption);
-            string result4 = ((TestEnum)4).GetEnumDescription(NotExistOption);
+            string result3 = TestEnum.TestThree.GetEnumDescription(notExistOption);
+            string result4 = ((TestEnum)4).GetEnumDescription(notExistOption);
 
             result3.ShouldBe(nameof(TestEnum.TestThree));
             result4.ShouldBe("4");
@@ -82,7 +82,7 @@ namespace Amoenus.NiceEumDescriptionTests
         }
 
         [Test]
-        public void GetEnumDescriptionDictionary_ReturnsDictironaryForEnum()
+        public void GetEnumDescriptionDictionary_ReturnsDictionaryForEnum()
         {
             var expectedDictionary = new Dictionary<TestEnum, string>
                                      {
