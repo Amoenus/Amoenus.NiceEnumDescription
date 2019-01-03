@@ -34,16 +34,16 @@ For example to have an enum in drop-down list but show a nice description for ea
 Added GetEnumDescriptionDictionary that will return a dictionary of every enum as a key, and description as value:
 Suggested Use in WPF : https://gist.github.com/Amoenus/56a4c286d3f6898b1f34ccf6da6576be</Description>
     <PackageLicenseUrl>http://unlicense.org/UNLICENSE</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/Amoenus.NiceEnumDescription</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/Amoenus/Amoenus.NiceEnumDescription</PackageProjectUrl>
     <PackageIconUrl>https://github.com/Amoenus/Amoenus.NiceEnumDescription/blob/master/cc0-logo.png?raw=true</PackageIconUrl>
-    <RepositoryUrl>https://github.com/Amoenus.NiceEnumDescription</RepositoryUrl>
+    <RepositoryUrl>https://github.com/Amoenus/Amoenus.NiceEnumDescription</RepositoryUrl>
     <PackageReleaseNotes>Making package multi-targetted. Dropping support for PCL</PackageReleaseNotes>
     <NeutralLanguage>en-GB</NeutralLanguage>
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\netstandard1.0\Amoenus.NiceEnumDescription.xml</DocumentationFile>
+  <PropertyGroup>
+     <DocumentationFile>\$(TargetFramework)\Amoenus.NiceEnumDescription.xml</DocumentationFile>
   </PropertyGroup>
 
 </Project>
